@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+__all_files_in () {
+  find "$DOTFILES_HOME/$1" -type f -not -name ".*"
+}
+
+__load_all_files_in () {
+  for file in `__all_files_in $1`; do
+    source $file
+  done
+}
+
+__display_alias () {
+  __all_files_in "alias/$2" |
+    xargs cat |
+    grep "alias" --color=never
+}
+
+dotfiles () {
+  case $1 in
+    load) __load_all_files_in $2 ;;
+    aliases) __display_alias $2 ;;
+    tree) tree $DOTFILES_HOME ;;
+    *) echo "Command not found"
+  esac
+}
