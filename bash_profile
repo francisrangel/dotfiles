@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-DOTFILES_HOME=`pwd -L ~/.dotfiles`
+DOTFILES_HOME=$(cd `dirname ${BASH_SOURCE[0]}`; pwd)
 source "$DOTFILES_HOME/lib/dotfiles"
 dotfiles load
