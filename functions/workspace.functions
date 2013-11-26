@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+ww() {
+	if [ "$1" != "" ]; then
+		cd $1;
+		export WORK_DIR=`pwd`;
+	else
+		cd $WORK_DIR;
+	fi
+}
+
+wl() { [[ -z $WORK_DIR ]] && echo "No current workspace defined" || echo $WORK_DIR; }
+
+p() { cd "$PROJECT_FOLDER/$1"; }
+pw() { ww "$PROJECT_FOLDER/$1"; }

@@ -22,7 +22,7 @@ dotfiles () {
       __load_all_files_in 'alias'
       __load_all_files_in 'completion'
       __load_all_files_in 'functions'
-      __load_all_files_in 'plugin'
+      __load_all_files_in 'plugins'
       __load_all_files_in 'private'
       __load_all_files_in 'theme'
     ;;

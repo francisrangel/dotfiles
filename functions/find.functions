@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+ff() { _myfind "f" "*$1*"; }
+ft() { _myfind "f" "*.$1"; }
+fd() { _myfind "d" "*$1*"; }
+fl() { _print_found; }
+
+gs() {
+  FFOUND_PWD=${PWD}
+  FFOUND=()
+  local index=0
+  local last_file=""
+
+  while read line; do
+    file=$(echo ${line} | awk -F':' '{ print $1 }')
+
+    if [[ ${file} != ${last_file} ]];then
+      FFOUND[${index}]=${file}
+      last_file=${file}
+      ((index++))
+    fi
+
+    if [ -t 1 ]; then printf "% 4d " $index; fi
+    echo $line
+
+  done < <(egrep --color=always -RIn $@ *)
+}
+
+_myfind() { _track_files < <(find -L "$PWD"/ -type "$1" -iname "$2" -not -name "*.svn*"); }

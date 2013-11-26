@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+_complete_projects() {
+	local cur
+	cur=${COMP_WORDS[COMP_CWORD]}
+	subs=`expr "${PROJECT_FOLDER}" : ".*\/\(.*\)" `
+	COMPREPLY=( $( compgen -S/ -d ${PROJECT_FOLDER}/$cur | sed s/.*${subs}.// ) )
+}
+
+complete -o nospace -F _complete_projects p
+complete -o nospace -F _complete_projects pw
