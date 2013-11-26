@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 __all_files_in () {
-  find "$DOTFILES_HOME/$1" -type f -not -name ".*"
+  find "$DOTFILES_HOME/$1" -type f -and -name "*.$1"
 }
 
 __load_all_files_in () {
@@ -18,9 +18,24 @@ __display_alias () {
 
 dotfiles () {
   case $1 in
-    load) __load_all_files_in $2 ;;
-    aliases) __display_alias $2 ;;
-    tree) tree $DOTFILES_HOME ;;
-    *) echo "Command not found"
+    load)
+      __load_all_files_in 'alias'
+      __load_all_files_in 'completion'
+      __load_all_files_in 'functions'
+      __load_all_files_in 'private'
+      __load_all_files_in 'theme'
+    ;;
+    update)	
+      (cd $DOTFILES_HOME; git pull --rebase)
+      dotfiles load
+    ;;
+    aliases)
+      __display_alias $2
+    ;;
+    tree)
+      tree "$DOTFILES_HOME/$2"
+    ;;
+    *)
+      echo "Command not found"
   esac
 }
