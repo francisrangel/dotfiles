@@ -22,10 +22,7 @@ __define_ps1() {
   __RED__='\[\e[;31m\]'
 
   __jobs_ps1() {
-    jobs |
-      wc -l |
-      sed -e 's/ //g' |
-      awk '$1 != 0 {printf " [%s]", $1}'
+	  jobs | wc -l | sed -e 's/ //g' | awk '$1 != 0 {printf " [%s]", $1}'
   }
 
   JOBS='$(__jobs_ps1)'

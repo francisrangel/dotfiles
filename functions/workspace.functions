@@ -11,5 +11,5 @@ ww() {
 
 wl() { [[ -z $WORK_DIR ]] && echo "No current workspace defined" || echo $WORK_DIR; }
 
-p() { cd "$PROJECT_FOLDER/$1"; }
-pw() { ww "$PROJECT_FOLDER/$1"; }
+p() { cd "$PROJECTS_DIR/$1"; }
+pw() { ww "$PROJECTS_DIR/$1"; }
