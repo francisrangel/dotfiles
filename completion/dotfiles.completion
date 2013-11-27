@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+__dotfiles_complete () {
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  local opts="load update aliases help"
+  COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
+  return 0
+}
+
+complete -F __dotfiles_complete dotfiles
