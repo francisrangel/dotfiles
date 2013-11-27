@@ -1,43 +1,31 @@
 #!/usr/bin/env bash
 
-#\! # #History number of current command
-#\# # #Command number of current command
-#\d # #Current date
-#\h # #Host name
-#\n # #New line
-#\s # #Shell name
-#\t # #Current time
-#\u # #User name
-#\W # #Current working directory
-#\w # #Current working directory (full path)
-#\j # #Jobs in background
-
 __define_ps1() {
-  __PURPLE__='\[\e[0;35m\]'
-  __BROW__='\[\e[0;33m\]'
-  __GREY__='\[\e[0;30m\]'
-  __BLUE__='\[\e[0;34m\]'
-  __WHITE__='\[\e[0;37m\]'
-  __GREEN__='\[\e[;32m\]'
-  __RED__='\[\e[;31m\]'
+  #PURPLE='\[\e[0;35m\]'
+  #BROW='\[\e[0;33m\]'
+  #GREY='\[\e[0;30m\]'
+  BLUE='\[\e[0;34m\]'
+  WHITE='\[\e[0;37m\]'
+  GREEN='\[\e[;32m\]'
+  RED='\[\e[;31m\]'
 
   __jobs_ps1() {
-	  jobs | wc -l | sed -e 's/ //g' | awk '$1 != 0 {printf " [%s]", $1}'
+    jobs | wc -l | sed -e 's/ //g' | awk '$1 != 0 {printf " [%s]", $1}'
   }
 
   JOBS='$(__jobs_ps1)'
   GIT_REPO='$(__git_ps1 " (%s)")'
   END='\[\e[m\]'
 
-  _TIME="$__WHITE__\t"
-  _USER="$__BLUE__\u:"
-  _PATH="$__GREEN__\w"
-  _GIT="$__RED__$GIT_REPO"
-  _JOBS="$__BLUE__$JOBS"
-  _NEW_LINE="\n$__RED__$"
-  _PROMPT="$__WHITE__$END"
+  _TIME="$WHITE\t"
+  _USER="$BLUE\u:"
+  _PATH="$GREEN\w"
+  _GIT="$RED$GIT_REPO"
+  _JOBS="$BLUE$JOBS"
+  _NEW_LINE="\n$RED$"
+  _PROMPT="$WHITE$END"
 
-  __ps1() {
+  __ps1 () {
     PS1="\n$_TIME $_USER $_PATH$_GIT$_JOBS$_NEW_LINE$_PROMPT ";
   }
 
@@ -47,4 +35,4 @@ __define_ps1() {
 __define_ps1
 unset __define_ps1
 
-export PS2="$__RED__~> $_PROMPT"
+export PS2="$RED~> $_PROMPT"
