@@ -28,13 +28,16 @@ dotfiles () {
     ;;
     update)	
       (cd $DOTFILES_HOME; git pull --rebase)
-      dotfiles load
+      source "$DOTFILES_HOME/init"
     ;;
     aliases)
       __display_alias $2
     ;;
     tree)
       tree "$DOTFILES_HOME/$2"
+    ;;
+    help)
+      echo "Usage: dotfiles [load|update|aliases|tree|help]"
     ;;
     *)
       echo "Command not found"
