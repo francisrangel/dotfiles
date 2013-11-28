@@ -1,37 +1,39 @@
 #!/usr/bin/env bash
 
 __define_ps1 () {
-  PURPLE='\[\e[0;35m\]'
-  #BROW='\[\e[0;33m\]'
-  #GREY='\[\e[0;30m\]'
-  BLUE='\[\e[0;34m\]'
-  WHITE='\[\e[0;37m\]'
-  GREEN='\[\e[;32m\]'
-  RED='\[\e[;31m\]'
+  local PURPLE='\[\e[0;35m\]'
+  local BROW='\[\e[0;33m\]'
+  local GREY='\[\e[0;30m\]'
+  local BLUE='\[\e[0;34m\]'
+  local WHITE='\[\e[0;37m\]'
+  local GREEN='\[\e[;32m\]'
+  local RED='\[\e[;31m\]'
 
   __jobs_ps1 () {
     jobs | wc -l | sed -e 's/ //g' | awk '$1 != 0 {printf " [%s]", $1}'
   }
 
-  JOBS='$(__jobs_ps1)'
-  GIT_REPO='$(__git_ps1 " (%s)")'
-  END='\[\e[m\]'
+  local WW_DIR='$(__working_dir_ps1)'
+  local RUNNING_JOBS='$(__jobs_ps1)'
+  local GIT_REPO='$(__git_ps1 " (%s)")'
+  local END='\[\e[m\]'
 
-  TIME="${WHITE}\t"
-  USER="${BLUE}\u:"
-  CUREENT_PATH="${GREEN}\w"
-  GIT="${RED}${GIT_REPO}"
-  JOBS="${BLUE}${JOBS}"
-  NEW_LINE="\n${RED}$"
-  PROMPT="${WHITE}${END}"
+  local WORKSPACE
+  [[ ! -z $WORK_DIR ]] && [[ `pwd` != *$WORK_DIR* ]] \
+    && WORKSPACE="${BROW}$(echo $WORK_DIR | awk -v home=$HOME '{ sub(home, "~", $1); printf $1 }')\n" \
+    || WORKSPACE=""
 
-  __ps1 () {
-    PS1="\n${TIME} ${USER} ${CUREENT_PATH}${GIT}${JOBS}${NEW_LINE}${PROMPT} ";
-	PS2="${PURPLE}└─▪ ${PROMPT}"
-  }
+  local TIME="${WHITE}\t"
+  local USER="${BLUE}\u:"
+  local CUREENT_PATH="${GREEN}\w"
+  local GIT="${RED}${GIT_REPO}"
+  local JOBS="${BLUE}${RUNNING_JOBS}"
+  local NEW_LINE="\n${RED}$"
+  local PROMPT="${WHITE}${END}"
 
-  PROMPT_COMMAND='__ps1'
+  PS1="\n${WORKSPACE}${TIME} ${USER} ${CUREENT_PATH}${GIT}${JOBS}${NEW_LINE}${PROMPT} ";
+  PS2="${PURPLE}└─▪ ${PROMPT}"
 }
 
-__define_ps1
-unset __define_ps1
+PROMPT_COMMAND='__define_ps1'
+
