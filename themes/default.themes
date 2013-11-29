@@ -1,26 +1,36 @@
 #!/usr/bin/env bash
 
+__right_align () {
+  local TEXT="$1"
+  let COL=$(tput cols)-${#TEXT}+15
+  printf "%${COL}s" $TEXT
+}
+
+__jobs_ps1 () {
+  jobs | wc -l | sed -e 's/ //g' | awk '$1 != 0 {printf " [%s]", $1}'
+}
+
+__work_dir_ps1 () {
+  local RELATIVE_WORK_DIR="$(__right_align $(echo $WORK_DIR | awk -v home=$HOME '{ sub(home, "~", $1); printf $1 }')) ⎇"
+  [[ `pwd` != *$WORK_DIR* ]] && printf "${RELATIVE_WORK_DIR}"
+}
+
 __define_ps1 () {
   local PURPLE='\[\e[0;35m\]'
   local BROW='\[\e[0;33m\]'
-  local GREY='\[\e[0;30m\]'
   local BLUE='\[\e[0;34m\]'
   local WHITE='\[\e[0;37m\]'
   local GREEN='\[\e[;32m\]'
   local RED='\[\e[;31m\]'
 
-  __jobs_ps1 () {
-    jobs | wc -l | sed -e 's/ //g' | awk '$1 != 0 {printf " [%s]", $1}'
-  }
-
-  local WW_DIR='$(__working_dir_ps1)'
+  local WORKSPACE_DIR='$(__work_dir_ps1)'
   local RUNNING_JOBS='$(__jobs_ps1)'
   local GIT_REPO='$(__git_ps1 " (%s)")'
   local END='\[\e[m\]'
 
   local WORKSPACE
-  [[ ! -z $WORK_DIR ]] && [[ `pwd` != *$WORK_DIR* ]] \
-    && WORKSPACE="${BROW}$(echo $WORK_DIR | awk -v home=$HOME '{ sub(home, "~", $1); printf $1 }')\n" \
+  [[ ! -z $WORK_DIR ]] \
+    && WORKSPACE="${BROW}${WORKSPACE_DIR}\n" \
     || WORKSPACE=""
 
   local TIME="${WHITE}\t"
