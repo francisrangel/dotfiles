@@ -2,7 +2,7 @@
 
 __right_align () {
   local TEXT="$1"
-  let COL=$(tput cols)-${#TEXT}+6
+  let COL=$(tput cols)-${#TEXT}+9
   printf "%${COL}s" $TEXT
 }
 
