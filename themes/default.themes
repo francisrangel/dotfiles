@@ -1,19 +1,12 @@
 #!/usr/bin/env bash
 
-__right_align () {
-  local TEXT="$1"
-  let COL=$(tput cols)-${#TEXT}+9
-  printf "%${COL}s" $TEXT
-}
-
 __jobs_ps1 () {
   jobs | wc -l | sed -e 's/ //g' | awk '$1 != 0 {printf " [%s]", $1}'
 }
 
 __work_dir_ps1 () {
   local RELATIVE_WORK_DIR="$(echo $WORK_DIR | awk -v home=$HOME '{ sub(home, "~", $1); printf $1 }')"
-  local RIGHT_ALIGNED="$(__right_align $RELATIVE_WORK_DIR) ⎇"
-  printf "$RIGHT_ALIGNED"
+  printf "%${COLUMNS}s" "$RELATIVE_WORK_DIR"
 }
 
 __define_ps1 () {
@@ -28,6 +21,7 @@ __define_ps1 () {
   local RUNNING_JOBS='$(__jobs_ps1)'
   local GIT_REPO='$(__git_ps1 " (%s)")'
   local END='\[\e[m\]'
+  local MOVE_TO_BOTTOM="\033[${LINES};0H"
 
   local WORKSPACE
   [[ ! -z $WORK_DIR ]] && [[ `pwd` != *$WORK_DIR* ]] \
@@ -42,7 +36,7 @@ __define_ps1 () {
   local NEW_LINE="\n${RED}$"
   local PROMPT="${WHITE}${END}"
 
-  PS1="\n${WORKSPACE}${TIME} ${USER} ${CUREENT_PATH}${GIT}${JOBS}${NEW_LINE}${PROMPT} ";
+  PS1="\n${MOVE_TO_BOTTOM}${WORKSPACE}${TIME} ${USER} ${CUREENT_PATH}${GIT}${JOBS}${NEW_LINE}${PROMPT} ";
   PS2="${PURPLE}└─▪ ${PROMPT}"
 }
 
