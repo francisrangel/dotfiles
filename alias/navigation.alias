@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
  
 alias ..="cd .."
+alias ...="cd ../../"
+alias ....="cd ../../../"
+alias .....="cd ../../../../"
+alias ......="cd ../../../../../"
 alias ls="ls -G"
 alias ll="ls -lah"
 alias l="ls -lh"
