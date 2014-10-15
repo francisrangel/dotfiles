@@ -1,0 +1,19 @@
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	st = status
+	co = checkout
+	pr = pull --rebase
+	aa = add -A
+	ci = commit
+	ba = branch -a
+	bd = branch -D
+	fp = fetch -p
+	ph = push
+	df = diff
+	ri = rebase -i
+	l = log
+	s = show
+	rh = reset HEAD --hard
+[core]
+	excludesfile = /Users/francis/.gitignore_global
+	editor = /usr/bin/vim
