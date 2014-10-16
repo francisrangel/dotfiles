@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+alias ffhere="find . -type file -iname "
+alias fdhere="find . -type dir -iname "
