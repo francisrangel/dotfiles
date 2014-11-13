@@ -15,5 +15,5 @@
 	s = show
 	rh = reset HEAD --hard
 [core]
-	excludesfile = /Users/francis/.gitignore_global
+	excludesfile = /Users/francisrangel/.gitignore_global
 	editor = /usr/local/bin/vim

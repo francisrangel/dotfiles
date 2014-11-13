@@ -4,6 +4,8 @@ target
 generated
 test_out
 .build
+gems
+.rbenv-gemsets
 
 #github gist start
 # Compiled source #
