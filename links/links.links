@@ -5,3 +5,4 @@ LINKS_HOME=$(cd `dirname ${BASH_SOURCE[0]}`; pwd)
 [[ ! -L ~/.inputrc ]] && ln -s $LINKS_HOME/inputrc ~/.inputrc
 [[ ! -L ~/.gitconfig ]] && ln -s $LINKS_HOME/gitconfig ~/.gitconfig
 [[ ! -L ~/.gitignore_global ]] && ln -s $LINKS_HOME/gitignore_global ~/.gitignore_global
+[[ ! -L ~/.ackrc ]] && ln -s $LINKS_HOME/ackrc ~/.ackrc

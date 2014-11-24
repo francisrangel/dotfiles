@@ -1,0 +1,7 @@
+--ignore-dir=generated/
+--ignore-dir=dist/
+--ignore-dir=_bower/
+--ignore-dir=node_modules/
+--ignore-dir=_lib/
+--ignore-dir=.git/
+--ignore-dir=.svn/
