@@ -6,6 +6,7 @@ test_out
 .build
 gems
 .rbenv-gemsets
+tags
 
 #github gist start
 # Compiled source #

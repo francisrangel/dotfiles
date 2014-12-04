@@ -1,0 +1,24 @@
+--recurse=yes
+
+--exclude=.git
+--exclude=.svn
+--exclude=log
+--exclude=node_modules
+--exclude=generated
+--exclude=dist
+--exclude=_assets
+--exclude=_bower
+--exclude=_lib
+--exclude=*.min.js
+--exclude=gems
+
+--append
+
+--langdef=js
+--langmap=js:.js
+--regex-js=/([A-Za-z0-9._$]+)[ \t][:=][ \t]\{/\1/,object/
+--regex-js=/([A-Za-z0-9._$()]+)[ \t][:=][ \t]*function[ \t]*\(/\1/,function/
+--regex-js=/function[ \t]+([A-Za-z0-9._$]+)[ \t]*([^)])/\1/,function/
+--regex-js=/([A-Za-z0-9._$]+)[ \t][:=][ \t]\[/\1/,array/
+--regex-js=/([^= ]+)[ \t]=[ \t][^"]'[^']*/\1/,string/
+--regex-js=/([^= ]+)[ \t]=[ \t][^']"[^"]*/\1/,string/
