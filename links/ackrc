@@ -5,3 +5,5 @@
 --ignore-dir=_lib/
 --ignore-dir=.git/
 --ignore-dir=.svn/
+--ignore-dir=gems
+--ignore-dir=build
