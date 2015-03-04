@@ -7,3 +7,4 @@ LINKS_HOME=$(cd `dirname ${BASH_SOURCE[0]}`; pwd)
 [[ ! -L ~/.gitignore_global ]] && ln -s $LINKS_HOME/gitignore_global ~/.gitignore_global
 [[ ! -L ~/.ackrc ]] && ln -s $LINKS_HOME/ackrc ~/.ackrc
 [[ ! -L ~/.ctags ]] && ln -s $LINKS_HOME/ctags ~/.ctags
+[[ ! -L ~/.screenrc ]] && ln -s $LINKS_HOME/screenrc ~/.screenrc
