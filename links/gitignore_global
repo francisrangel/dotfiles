@@ -7,6 +7,14 @@ test_out
 gems
 .rbenv-gemsets
 tags
+*.iml
+*.ipr
+*.iws
+out/
+.gradle/
+.ruby-version
+src-gen/
+src-gen
 
 #github gist start
 # Compiled source #
