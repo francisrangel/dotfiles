@@ -4,6 +4,7 @@ target
 generated
 test_out
 .build
+build/
 gems
 .rbenv-gemsets
 tags
