@@ -16,6 +16,7 @@ out/
 .ruby-version
 src-gen/
 src-gen
+node_modules/
 
 #github gist start
 # Compiled source #
