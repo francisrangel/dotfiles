@@ -4,7 +4,7 @@
 	co = checkout
 	pr = pull --rebase
 	aa = add -A
-	ci = commit
+	ci = commit -v
 	ba = branch -a
 	bd = branch -D
 	fp = fetch -p
