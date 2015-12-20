@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-LINKS_HOME=$(cd `dirname ${BASH_SOURCE[0]}`; pwd)
+SOURCE_PATH=$0:A
+LINKS_HOME=$(cd `dirname ${SOURCE_PATH}`; pwd)
 
 [[ ! -L ~/.inputrc ]] && ln -s $LINKS_HOME/inputrc ~/.inputrc
 [[ ! -L ~/.gitconfig ]] && ln -s $LINKS_HOME/gitconfig ~/.gitconfig

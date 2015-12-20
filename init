@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-DOTFILES_HOME=$(cd `dirname ${BASH_SOURCE[0]}`; pwd)
+SOURCE_PATH=$0:A
+DOTFILES_HOME=$(cd `dirname ${SOURCE_PATH}`; pwd)
 
-source "$DOTFILES_HOME/settings"
-source "$DOTFILES_HOME/lib/dotfiles"
-source ~/.fzf.bash
+source "${DOTFILES_HOME}/settings"
+source "${DOTFILES_HOME}/lib/dotfiles"
 
 dotfiles load

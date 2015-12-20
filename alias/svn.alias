@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-alias svndiff="svn diff | vim -R -"

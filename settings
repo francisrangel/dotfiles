@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
 
 PROJECTS_DIR=$HOME/Projects
-MARKS_DIR=$HOME/.marks
