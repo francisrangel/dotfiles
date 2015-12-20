@@ -22,7 +22,7 @@ __update_dotfiles () {
 }
 
 __load_dotfiles () {
-  for dir in 'alias' 'links' 'functions' 'options'; do
+  for dir in 'alias' 'links' 'options'; do
     __load_all_files_in $dir
   done
 }

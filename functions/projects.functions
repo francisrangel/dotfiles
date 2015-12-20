@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-p() {
-	cd "$PROJECTS_DIR/$1";
-}
