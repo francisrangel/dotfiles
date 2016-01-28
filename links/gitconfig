@@ -14,6 +14,7 @@
 	l = log
 	s = show
 	rh = reset HEAD --hard
+	pom = push origin master
 [core]
 	excludesfile = /Users/francisrangel/.gitignore_global
 	editor = /usr/local/bin/vim
