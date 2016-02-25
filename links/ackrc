@@ -7,3 +7,7 @@
 --ignore-dir=.svn/
 --ignore-dir=gems
 --ignore-dir=build
+
+--ignore=*.js.map
+--ignore=*.css.map
+--ignore=*.scss.map
