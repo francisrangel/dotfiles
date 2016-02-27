@@ -1,0 +1,13 @@
+generated/
+dist/
+_bower/
+node_modules/
+_lib/
+.git/
+.svn/
+gems
+build
+
+*.js.map
+*.css.map
+*.scss.map

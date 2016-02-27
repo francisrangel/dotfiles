@@ -6,6 +6,6 @@ LINKS_HOME=$(cd `dirname ${SOURCE_PATH}`; pwd)
 [[ ! -L ~/.inputrc ]] && ln -s $LINKS_HOME/inputrc ~/.inputrc
 [[ ! -L ~/.gitconfig ]] && ln -s $LINKS_HOME/gitconfig ~/.gitconfig
 [[ ! -L ~/.gitignore_global ]] && ln -s $LINKS_HOME/gitignore_global ~/.gitignore_global
-[[ ! -L ~/.agrc ]] && ln -s $LINKS_HOME/agrc ~/.agrc
+[[ ! -L ~/.agignore ]] && ln -s $LINKS_HOME/agignore ~/.agignore
 [[ ! -L ~/.ctags ]] && ln -s $LINKS_HOME/ctags ~/.ctags
 [[ ! -L ~/.screenrc ]] && ln -s $LINKS_HOME/screenrc ~/.screenrc
