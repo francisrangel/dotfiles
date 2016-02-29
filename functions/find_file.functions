@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+BYel='\e[0;33m'
+RCol='\e[0m'
+
+RESULT_FILES=~/.ffhere_results
+RESULT_DIRS=~/.fdhere_results
+
+__clean_file() {
+  [ -f "$1" ] && rm "$1"
+}
+
+__find_file() {
+  find . -type file -and -iname "$1"
+}
+
+__find_dir() {
+  find . -type dir -and -iname "$1"
+}
+
+__write_list() {
+  counter=1
+  for each in `$1 $2`; do
+    echo "$counter $each" >> "$3"
+    echo "${BYel}$counter${RCol}: $each"
+    counter=$((counter+1))
+  done
+}
+
+ffhere() {
+  __clean_file "$RESULT_FILES"
+  __write_list __find_file "$1" "$RESULT_FILES"
+}
+
+fdhere() {
+  __clean_file "$RESULT_DIRS"
+  __write_list __find_dir "$1" "$RESULT_DIRS"
+}
+
+__read_entry() {
+  line=$(sed -n "$1p" "$2")
+
+  echo $line | cut -d ' ' -f 2
+}
+
+__enter_dir() {
+  cd `__read_entry "$1" "$RESULT_DIRS"`
+}
+
+c() {
+  __enter_dir "$1"
+}
+
+__open_file() {
+  vim `__read_entry "$1" "$RESULT_FILES"`
+}
+
+v() {
+  __open_file "$1"
+}
