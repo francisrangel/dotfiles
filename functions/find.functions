@@ -10,42 +10,39 @@ __clean_file() {
   [ -f "$1" ] && rm "$1"
 }
 
-__find_file() {
-  find . -type file -and -iname "$1"
-}
-
-__find_dir() {
-  find . -type dir -and -iname "$1"
-}
-
-__write_list() {
-  counter=1
-  for each in `$1 $2`; do
-    echo "${BYel}$counter${RCol}: $each" >> "$3"
-    echo "${BYel}$counter${RCol}: $each"
-    counter=$((counter+1))
-  done
-  echo "\n$PWD" >> "$3"
-}
-
 ffhere() {
   __clean_file "$RESULT_FILES"
-  __write_list __find_file "$1" "$RESULT_FILES"
+  local counter=1
+  while IFS= read -d $'\0' -r file ; do
+    echo "${BYel}$counter${RCol}: $file" >> "$RESULT_FILES"
+    echo "${BYel}$counter${RCol}: $file"
+    counter=$((counter+1))
+  done < <(find . -type file -iname "$1" -print0)
+
+  echo "\n$PWD" >> "$RESULT_FILES"
 }
 
 fdhere() {
   __clean_file "$RESULT_DIRS"
-  __write_list __find_dir "$1" "$RESULT_DIRS"
+  local counter=1
+  while IFS= read -d $'\0' -r file ; do
+    echo "${BYel}$counter${RCol}: $file" >> "$RESULT_DIRS"
+    echo "${BYel}$counter${RCol}: $file"
+    counter=$((counter+1))
+  done < <(find . -type dir -iname "$1" -print0)
+
+  echo "\n$PWD" >> "$RESULT_DIRS"
 }
 
 __read_entry() {
-  line=$(sed -n "$1p" "$2")
+  local line="$(sed -n "$1p" "$2")"
+  IFS=' ' read -r id file_name <<< "$line"
 
-  echo $line | cut -d ' ' -f 2
+  echo "$file_name"
 }
 
 __enter_dir() {
-  cd `__read_entry "$1" "$RESULT_DIRS"`
+  cd "`__read_entry "$1" "$RESULT_DIRS"`"
 }
 
 c() {
@@ -53,7 +50,7 @@ c() {
 }
 
 __open_file() {
-  vim `__read_entry "$1" "$RESULT_FILES"`
+  vim "`__read_entry "$1" "$RESULT_FILES"`"
 }
 
 v() {
