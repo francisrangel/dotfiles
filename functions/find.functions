@@ -21,10 +21,11 @@ __find_dir() {
 __write_list() {
   counter=1
   for each in `$1 $2`; do
-    echo "$counter $each" >> "$3"
+    echo "${BYel}$counter${RCol}: $each" >> "$3"
     echo "${BYel}$counter${RCol}: $each"
     counter=$((counter+1))
   done
+  echo "\n$PWD" >> "$3"
 }
 
 ffhere() {
@@ -57,4 +58,12 @@ __open_file() {
 
 v() {
   __open_file "$1"
+}
+
+ffl() {
+  cat "$RESULT_FILES"
+}
+
+fdl() {
+  cat "$RESULT_DIRS"
 }
