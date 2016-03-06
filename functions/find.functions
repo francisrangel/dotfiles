@@ -37,8 +37,9 @@ fdhere() {
 __read_entry() {
   local line="$(sed -n "$1p" "$2")"
   IFS=' ' read -r id file_name <<< "$line"
+  local working_dir="$(sed -e '$!d' "$2")"
 
-  echo "$file_name"
+  echo "$working_dir/$file_name" | sed -e "s/\/\.\//\//g"
 }
 
 __enter_dir() {
