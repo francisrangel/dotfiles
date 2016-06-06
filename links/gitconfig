@@ -7,6 +7,7 @@
 	ci = commit -v
 	ba = branch -a
 	bd = branch -D
+	b = branch
 	fp = fetch -p
 	ph = push
 	df = diff
@@ -16,5 +17,5 @@
 	rh = reset HEAD --hard
 	pom = push origin master
 [core]
-	excludesfile = /Users/francisrangel/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	editor = /usr/local/bin/vim
