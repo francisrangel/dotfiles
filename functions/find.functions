@@ -43,11 +43,15 @@ __read_entry() {
 }
 
 __enter_dir() {
-  cd "`__read_entry "$1" "$RESULT_DIRS"`"
+  pushd "`__read_entry "$1" "$RESULT_DIRS"`"
 }
 
 c() {
   __enter_dir "$1"
+}
+
+back() {
+  popd
 }
 
 __open_file() {
